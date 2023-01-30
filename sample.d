@@ -7,6 +7,9 @@
 .\sample.o: C:\Users\bebo1\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armcc.h
 .\sample.o: C:\Users\bebo1\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h
 .\sample.o: C:\Users\bebo1\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h
-.\sample.o: GLCD/GLCD.h
+.\sample.o: GLCD_advanced/GLCD.h
 .\sample.o: TouchPanel/TouchPanel.h
 .\sample.o: timer/timer.h
+.\sample.o: shapes/shapes.h
+.\sample.o: RIT/RIT.h
+.\sample.o: joystick/joystick.h
