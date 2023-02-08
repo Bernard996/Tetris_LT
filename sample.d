@@ -13,3 +13,4 @@
 .\sample.o: shapes/shapes.h
 .\sample.o: RIT/RIT.h
 .\sample.o: joystick/joystick.h
+.\sample.o: gameControls/gameControls.h

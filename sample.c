@@ -28,6 +28,7 @@
 #include "shapes/shapes.h"
 #include "RIT/RIT.h"
 #include "joystick/joystick.h"
+#include "gameControls/gameControls.h"
 
 #define SIMULATOR 1
 
@@ -50,7 +51,11 @@ int main(void)
 	init_RIT(0x1312d0);
 	enable_RIT();
 	
-		
+	actualShape = 0;
+	posX = initPosX;
+  posY = initPosY;
+	init_timer(0,25000000);
+	enable_timer(0);
 
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						

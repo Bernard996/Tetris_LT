@@ -1,7 +1,7 @@
 #include "LPC17xx.h"
 #include "gameControls.h"
 
-uint8_t gameMatrix [11][10] = {
+uint8_t gameMatrix [12][10] = {
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
@@ -12,7 +12,8 @@ uint8_t gameMatrix [11][10] = {
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0
+  0,0,0,0,0,0,0,0,0,0,
+  1,1,1,1,1,1,1,1,1,1
 };
 
-uint8_t initPosX = 4, intPosY = 0, posX, posY;
+uint8_t initPosX = 4, initPosY = 0, posX, posY, prevPosX, prevPosY, actualShape;

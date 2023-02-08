@@ -13,6 +13,8 @@
 #include "../GLCD/GLCD.h" 
 #include "../TouchPanel/TouchPanel.h"
 #include "../RIT/RIT.h"
+#include "../shapes/shapes.h"
+#include "../gameControls/gameControls.h"
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -28,6 +30,36 @@
 
 void TIMER0_IRQHandler (void)
 {
+  switch(actualShape){
+    case 0:
+      if(line(posX, posY)){
+        prevPosX = posX;
+        prevPosY = posY;
+        posY = posY+1;
+      }
+      else {
+				prevPosX = initPosX;
+        prevPosY = initPosY;
+				posX = initPosX;
+				posY = initPosY;
+        actualShape = actualShape + 1;
+      }
+    break;
+    case 1:
+      if(cube(posX, posY)){
+        prevPosX = posX;
+        prevPosY = posY;
+        posY = posY+1;
+      }
+      else {
+        prevPosX = initPosX;
+        prevPosY = initPosY;
+				posX = initPosX;
+				posY = initPosY;
+        // actualShape = actualShape + 1;
+      }
+    break;
+  }
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
   return;
 }

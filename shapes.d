@@ -9,3 +9,4 @@
 .\shapes.o: C:\Users\bebo1\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h
 .\shapes.o: C:\Users\bebo1\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h
 .\shapes.o: shapes\shapes.h
+.\shapes.o: shapes\../gameControls/gameControls.h
