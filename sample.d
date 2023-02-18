@@ -14,3 +14,4 @@
 .\sample.o: RIT/RIT.h
 .\sample.o: joystick/joystick.h
 .\sample.o: gameControls/gameControls.h
+.\sample.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

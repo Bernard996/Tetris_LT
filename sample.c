@@ -29,6 +29,7 @@
 #include "RIT/RIT.h"
 #include "joystick/joystick.h"
 #include "gameControls/gameControls.h"
+#include <stdio.h>
 
 #define SIMULATOR 1
 
@@ -50,6 +51,8 @@ int main(void)
 	joystick_init();
 	init_RIT(0x1312d0);
 	enable_RIT();
+
+	//printf("Ciao");
 	
 	actualShape = 0;
 	posX = initPosX;

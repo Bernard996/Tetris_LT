@@ -8,9 +8,10 @@
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include <string.h>
+#include <stdio.h>
 #include "lpc17xx.h"
 #include "timer.h"
-#include "../GLCD/GLCD.h" 
+#include "../GLCD_advanced/GLCD.h" 
 #include "../TouchPanel/TouchPanel.h"
 #include "../RIT/RIT.h"
 #include "../shapes/shapes.h"
@@ -30,10 +31,12 @@
 
 void TIMER0_IRQHandler (void)
 {
+  int i,j;
+  char s[10];
   switch(actualShape){
     case 0:
-      if(line(posX, posY)){
-        prevPosX = posX;
+      if(line(posX-1, posY)){
+        prevPosX = posX-1;
         prevPosY = posY;
         posY = posY+1;
       }
@@ -60,6 +63,12 @@ void TIMER0_IRQHandler (void)
       }
     break;
   }
+  // for(i=0; i<12; i++) {
+  //   for(j=0; j<10; j++) {
+  //     s[j] = gameMatrix[i][j] + '0';
+  //   }
+  //   GUI_Text(0, 15*i, (uint8_t*)s, Black, White);
+  // }
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
   return;
 }

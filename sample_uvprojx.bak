@@ -541,6 +541,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>gameControls</GroupName>
+          <Files>
+            <File>
+              <FileName>gameControls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\gameControls\gameControls.c</FilePath>
+            </File>
+            <File>
+              <FileName>gameControls.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\gameControls\gameControls.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>

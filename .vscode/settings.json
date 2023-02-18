@@ -1,5 +1,7 @@
 {
   "files.associations": {
-    "gamecontrols.h": "c"
+    "gamecontrols.h": "c",
+    "touchpanel.h": "c",
+    "rit.h": "c"
   }
 }

@@ -13,57 +13,49 @@ uint8_t line(uint16_t x0, uint16_t y0){
   uint8_t i, j, canMove = 1;
 
   if (!line_orientation){
-    for (i = 0; i < 2; i++){
-      for (j = 0; j < 4; j++){
-        if (gameMatrix[y0 + i][x0 + j] == 1){
-          canMove = 0;
-          break;
-        }
+    for (i = 0; i < 4; i++){
+      if (gameMatrix[y0][x0 + i] != 0){
+        canMove = 0;
+        break;
       }
     }
     if (canMove){
-      for (i = 0; i < 4; i++){
-        gameMatrix[prevPosY][prevPosX+i] = 0;
-      }
-      for (i = 0; i < 4; i++){
-        gameMatrix[y0][x0 + i] = 1;
-      }
       x0 = x0 * 24;
       y0 = y0 * 24 + 80;
-      LCD_DrawRectangle(prevPosX*24, prevPosY*24+80, width * 4, width, White);
-      LCD_DrawRectangle(x0, y0, width * 4, width, Black);
-      LCD_DrawRectangle(x0 + (0 * width) + 1, y0 + 1, width - 2, width - 2, Red);
-      LCD_DrawRectangle(x0 + (1 * width) + 1, y0 + 1, width - 2, width - 2, Red);
-      LCD_DrawRectangle(x0 + (2 * width) + 1, y0 + 1, width - 2, width - 2, Red);
-      LCD_DrawRectangle(x0 + (3 * width) + 1, y0 + 1, width - 2, width - 2, Red);
+      for(i=0; i < 4; i++){
+        deleteBaseSquare((24*prevPosX)+(24*i),24*prevPosY+80);
+      }
+      for(i=0; i < 4; i++){
+        drawBaseSquare(x0+(24*i),y0,Red);
+      }
       return 1;
+    }
+    else {
+      for (i = 0; i < 4; i++) {
+        gameMatrix[y0][x0 + i] = 0;
+      }
     }
   }
   else{
     for (i = 0; i < 4; i++){
-      for (j = 0; j < 2; j++){
-        if (gameMatrix[y0 + i][x0 + j] == 1){
+        if (gameMatrix[y0 + i][x0] != 0){
           canMove = 0;
           break;
         }
-      }
     }
     if (canMove){
-      for (i = 0; i < 4; i++){
-        gameMatrix[prevPosY+i][prevPosX] = 0;
-      }
-      for (i = 0; i < 4; i++){
-        gameMatrix[y0+i][x0] = 1;
-      }
       x0 = x0 * 24;
       y0 = y0 * 24 + 80;
-      LCD_DrawRectangle(prevPosX*24, prevPosY*24+80, width, width*4, White);
-      LCD_DrawRectangle(x0, y0, width, width * 4, Black);
-      LCD_DrawRectangle(x0 + 1, y0 + (0 * width) + 1, width - 2, width - 2, Green);
-      LCD_DrawRectangle(x0 + 1, y0 + (1 * width) + 1, width - 2, width - 2, Green);
-      LCD_DrawRectangle(x0 + 1, y0 + (2 * width) + 1, width - 2, width - 2, Green);
-      LCD_DrawRectangle(x0 + 1, y0 + (3 * width) + 1, width - 2, width - 2, Green);
+      for(i=0; i<4; i++) {
+        deleteBaseSquare(24*prevPosX,(24*prevPosY)+(24*i)+80);
+      }
+      for(i=0; i<4; i++) {
+        drawBaseSquare(x0, y0+(24*i), Red);
+      }
       return 1;
+    }
+    else {
+      gameMatrix[y0 + i][x0] = 0;
     }
   }
   return 0;
@@ -72,14 +64,31 @@ uint8_t line(uint16_t x0, uint16_t y0){
 uint8_t cube(uint16_t x0, uint16_t y0){
   uint8_t canMove = 1, i, j;
 
-  for (i = 0; i < 2; i++){
-    for (j = 0; j < 2; j++){
-      if (gameMatrix[y0 + i][x0 + j] == 1){
-        canMove = 0;
-        break;
-      }
+  if(x0 - prevPosX == -1){
+    if(gameMatrix[x0][y0] != 0 || gameMatrix[x0][y0+1] != 0){
+      canMove = 0;
     }
   }
+  else if(x0 + prevPosX == 0) {
+    if(gameMatrix[x0][y0+1] != 0 || gameMatrix[x0+1][y0+1] != 0){
+      canMove = 0;
+    }
+  }
+  else {
+    if(gameMatrix[x0+1][y0] != 0 || gameMatrix[x0+1][y0+1] != 0){
+      canMove = 0;
+    }
+  }
+
+
+  // for (i = 0; i < 2; i++){
+  //   for (j = 0; j < 2; j++){
+  //     if (gameMatrix[y0 + i][x0 + j] != 0){
+  //       canMove = 0;
+  //       break;
+  //     }
+  //   }
+  // }
 
   if (canMove){
     for (i = 0; i < 2; i++) {
@@ -89,7 +98,7 @@ uint8_t cube(uint16_t x0, uint16_t y0){
     }
     for (i = 0; i < 2; i++) {
       for (j = 0; j < 2; j++){
-        gameMatrix[y0 + i][x0 + j] = 1;
+        gameMatrix[y0 + i][x0 + j] = 3;
       }
     }
 
@@ -287,4 +296,13 @@ uint8_t s_shape(uint16_t x0, uint16_t y0)
       }
     }
   }
+}
+
+void drawBaseSquare(uint8_t x0, uint8_t y0, uint16_t Color) {
+  LCD_DrawRectangle(x0, y0, 24, 24, Black);
+  LCD_DrawRectangle(x0+1, y0+1, 22, 22, Color);
+}
+
+void deleteBaseSquare(uint8_t x0, uint8_t y0) {
+  LCD_DrawRectangle(x0, y0, 24, 24, White);
 }

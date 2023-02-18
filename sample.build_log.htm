@@ -22,19 +22,19 @@ Dialog DLL:      TARMP1.DLL V1.26.0.0
  
 <h2>Project:</h2>
 D:\Progetti ARM\Tetris_LT\sample.uvprojx
-Project File Date:  01/30/2023
+Project File Date:  02/18/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling IRQ_timer.c...
-timer\../shapes/shapes.h(9): warning:  #1-D: last line of file ends without a newline
+compiling sample.c...
+shapes/shapes.h(11): warning:  #1-D: last line of file ends without a newline
   extern int8_t t_orientation;
-timer\../gameControls/gameControls.h(2): warning:  #1-D: last line of file ends without a newline
+gameControls/gameControls.h(2): warning:  #1-D: last line of file ends without a newline
   extern uint8_t initPosX, initPosY, posX, posY, prevPosX, prevPosY, actualShape;
-timer\IRQ_timer.c: 2 warnings, 0 errors
+sample.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=32160 RO-data=1840 RW-data=140 ZI-data=612  
+Program Size: Code=32040 RO-data=1840 RW-data=140 ZI-data=612  
 ".\sample.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -44,6 +44,14 @@ Package Vendor: ARM
                 ARM.CMSIS.5.9.0
                 CMSIS (Common Microcontroller Software Interface Standard)
    * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.ARM_Compiler.1.6.3.pack
+                Keil.ARM_Compiler.1.6.3
+                Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
+   * Component: STDERR Variant: ITM Version: 1.2.0
+   * Component: STDIN Variant: ITM Version: 1.2.0
+   * Component: STDOUT Variant: ITM Version: 1.2.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.LPC1700_DFP.2.7.1.pack
@@ -58,6 +66,15 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDERR:ITM:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDIN:ITM:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
+      Source file:   Source\retarget_io.c
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
