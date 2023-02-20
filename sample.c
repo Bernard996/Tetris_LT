@@ -41,7 +41,7 @@ extern uint8_t ScaleFlag; // <- ScaleFlag needs to visible in order for the emul
 int main(void)
 {
 
-  SystemInit();  												/* System Initialization (i.e., PLL)  */
+ SystemInit();  												/* System Initialization (i.e., PLL)  */
 	
   LCD_Initialization();
 	// TP_Init();
@@ -54,10 +54,10 @@ int main(void)
 
 	//printf("Ciao");
 	
-	actualShape = 0;
+	actualShape = 2;
 	posX = initPosX;
   posY = initPosY;
-	init_timer(0,25000000);
+	init_timer(0,25000000/4);
 	enable_timer(0);
 
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/

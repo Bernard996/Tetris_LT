@@ -29,12 +29,12 @@ void RIT_IRQHandler (void)
 	
 	if(!pressed){
 		if(!left){
-			t_orientation--;
+			t_or--;
 			t_shape(70, 100);
 			pressed = 1;
 		}
 		if(!right){
-			t_orientation++;
+			t_or++;
 			t_shape(70, 100);
 			pressed = 1;
 		}
