@@ -10,3 +10,4 @@
 .\irq_rit.o: RIT\RIT.h
 .\irq_rit.o: RIT\../shapes/shapes.h
 .\irq_rit.o: RIT\../timer/timer.h
+.\irq_rit.o: RIT\../gameControls/gameControls.h

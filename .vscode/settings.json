@@ -2,6 +2,7 @@
   "files.associations": {
     "gamecontrols.h": "c",
     "touchpanel.h": "c",
-    "rit.h": "c"
+    "rit.h": "c",
+    "*.bak": "c"
   }
 }
