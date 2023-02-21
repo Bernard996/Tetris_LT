@@ -16,3 +16,5 @@
 .\sample.o: shapes/shapes.h
 .\sample.o: timer/timer.h
 .\sample.o: button_EXINT/button.h
+.\sample.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\sample.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

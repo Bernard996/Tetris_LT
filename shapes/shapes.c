@@ -38,6 +38,10 @@ uint8_t line(uint16_t x0, uint16_t y0) {
   };
   int i, j, canMove = 1;
 
+  if(x0 < 0 || ((line_or == 0 && x0 > 6) || (line_or == 1 && x0 > 9))){
+    return 3;
+  }
+
   for (i = 0; i < 4; i++) {
     for (j = 0; j < 4; j++) {
       if (shapes[line_or][i][j] == 1 && gameMatrix[y0 + i][x0 + j] != 0) {
@@ -70,16 +74,17 @@ uint8_t line(uint16_t x0, uint16_t y0) {
       for(i = 0; i < 4; i++) {
         for(j = 0; j < 4; j++) {
           if(shapes[line_or][i][j] == 1) {
-            gameMatrix[prevPosY+i][prevPosX+j] = 4;
+            gameMatrix[prevPosY+i][prevPosX+j] = 2;
           }
         }
       }
-      line_or_old = line_or;
+      line_or = 0;
+      line_or_old = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      line_or_old = line_or;
+      line_or = line_or_old;
       return 2;
     }
   }
@@ -87,6 +92,10 @@ uint8_t line(uint16_t x0, uint16_t y0) {
 
 uint8_t cube(uint16_t x0, uint16_t y0) {
   uint8_t canMove = 1, i, j;
+
+  if(x0 < 0 || x0 > 8){
+    return 3;
+  }
 
   for (i = 0; i < 2; i++) {
     for (j = 0; j < 2; j++) {
@@ -131,7 +140,6 @@ uint8_t cube(uint16_t x0, uint16_t y0) {
 }
 
 uint8_t t_shape(uint16_t x0, uint16_t y0) {
-  
   uint8_t shapes[4][3][3] = {
     {
       1,1,1,
@@ -155,6 +163,14 @@ uint8_t t_shape(uint16_t x0, uint16_t y0) {
     }
   };
   int i, j, canMove = 1;
+
+  if(x0 < 0 || 
+     (((t_or == 0 || t_or == 2) && x0 > 7)) || 
+     (((t_or == 1 || t_or == 3) && x0 > 8))
+    ) 
+  {
+    return 3;
+  }
 
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -192,12 +208,13 @@ uint8_t t_shape(uint16_t x0, uint16_t y0) {
           }
         }
       }
-      t_or_old = t_or;
+      t_or = 0;
+      t_or_old = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      t_or_old = t_or;
+      t_or = t_or_old;
       return 2;
     }
   }
@@ -217,6 +234,14 @@ uint8_t z_shape(uint16_t x0, uint16_t y0) {
     }
   };
   int i, j, canMove = 1;
+
+  if(x0 < 0 || 
+     ((z_or == 0 && x0 > 7)) || 
+     ((z_or == 1 && x0 > 8))
+    ) 
+  {
+    return 3;
+  }
 
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -254,12 +279,13 @@ uint8_t z_shape(uint16_t x0, uint16_t y0) {
           }
         }
       }
-      z_or_old = z_or;
+      z_or_old = 0;
+      z_or = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      z_or_old = z_or;
+      z_or = z_or_old;
       return 2;
     }
   }
@@ -279,6 +305,14 @@ uint8_t s_shape(uint16_t x0, uint16_t y0) {
     }
   };
   int i, j, canMove = 1;
+
+  if(x0 < 0 || 
+     ((s_or == 0 && x0 > 7)) || 
+     ((s_or == 1 && x0 > 8))
+    ) 
+  {
+    return 3;
+  }
 
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -316,12 +350,13 @@ uint8_t s_shape(uint16_t x0, uint16_t y0) {
           }
         }
       }
-      s_or_old = s_or;
+      s_or_old = 0;
+      s_or = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      s_or_old = s_or;
+      s_or = s_or_old;
       return 2;
     }
   }
@@ -351,6 +386,14 @@ uint8_t ll_shape(uint16_t x0, uint16_t y0) {
     }
   };
   int i, j, canMove = 1;
+
+  if(x0 < 0 || 
+     (((ll_or == 0 || ll_or == 2) && x0 > 7)) || 
+     (((ll_or == 1 || ll_or == 3) && x0 > 8))
+    ) 
+  {
+    return 3;
+  }
 
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -388,12 +431,13 @@ uint8_t ll_shape(uint16_t x0, uint16_t y0) {
           }
         }
       }
-      ll_or_old = ll_or;
+      ll_or_old = 0;
+      ll_or = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      ll_or_old = ll_or;
+      ll_or = ll_or_old;
       return 2;
     }
   }
@@ -423,6 +467,14 @@ uint8_t rl_shape(uint16_t x0, uint16_t y0) {
     }
   };
   int i, j, canMove = 1;
+
+  if(x0 < 0 || 
+     (((rl_or == 0 || rl_or == 2) && x0 > 7)) || 
+     (((rl_or == 1 || rl_or == 3) && x0 > 8))
+    ) 
+  {
+    return 3;
+  }
 
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -460,12 +512,13 @@ uint8_t rl_shape(uint16_t x0, uint16_t y0) {
           }
         }
       }
-      rl_or_old = rl_or;
+      rl_or_old = 0;
+      rl_or = 0;
       return 0;
     }
     else {
       goingDown = 1;
-      rl_or_old = rl_or;
+      rl_or = rl_or_old;
       return 2;
     }
   }

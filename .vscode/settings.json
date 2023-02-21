@@ -3,6 +3,7 @@
     "gamecontrols.h": "c",
     "touchpanel.h": "c",
     "rit.h": "c",
-    "*.bak": "c"
+    "*.bak": "c",
+    "shapes.h": "c"
   }
 }

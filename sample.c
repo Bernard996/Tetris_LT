@@ -34,6 +34,8 @@
 #include "shapes/shapes.h"
 #include "timer/timer.h"
 #include "button_EXINT/button.h"
+#include <time.h>
+#include <stdlib.h>
 
 #define SIMULATOR 1
 
@@ -57,9 +59,10 @@ int main(void) {
   init_RIT(0x1312d0);
   enable_RIT();
 
+  actualShape = LPC_RIT->RICOUNTER %7;  
+
   // printf("Ciao");
 
-  actualShape = 0;
   posX = initPosX;
   posY = initPosY;
   init_timer(0, 25000000);

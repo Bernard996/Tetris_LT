@@ -28,10 +28,12 @@
 ** Returned value:		None
 **
 ******************************************************************************/
-
 void TIMER0_IRQHandler(void) {
   int i, j;
-  char s[10];
+  static int minutes = 0, seconds = 0;
+  char s[5];
+  sprintf(s, "%02d:%02d", minutes, seconds);
+  GUI_Text(10, 10, (uint8_t*)s, Black, White);
   switch (actualShape) {
     case 0:
       if (line(posX, posY)) {
@@ -43,7 +45,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 1:
@@ -56,7 +58,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 2:
@@ -69,7 +71,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 3:
@@ -83,7 +85,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 4:
@@ -97,7 +99,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 5:
@@ -111,7 +113,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
     case 6:
@@ -125,16 +127,27 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        actualShape++;
+        actualShape = LPC_RIT->RICOUNTER %7;
       }
       break;
   }
-  for (i = 0; i < 11; i++) {
-    for (j = 0; j < 10; j++) {
-      s[j] = gameMatrix[i][j] + '0';
-    }
-    GUI_Text(0, 15 * i, (uint8_t*)s, Black, White);
+  // for (i = 0; i < 11; i++) {
+  //   for (j = 0; j < 10; j++) {
+  //     s[j] = gameMatrix[i][j] + '0';
+  //   }
+  //   GUI_Text(0, 15 * i, (uint8_t*)s, Black, White);
+  // }
+  seconds ++;
+  if(seconds == 60){
+    seconds = 0;
+    minutes++;
   }
+  disable_timer(0);
+  disable_RIT();
+  checkMatrix();
+  enable_timer(0);
+  enable_RIT();
+
   LPC_TIM0->IR = 1; /* clear interrupt flag */
   return;
 }

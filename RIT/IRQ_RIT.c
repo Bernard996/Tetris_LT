@@ -23,14 +23,21 @@
 **
 ******************************************************************************/
 
-void rotateLeft(void), rotateRight(void);
+void rotateLeft(void), rotateRight(void), moveLeft(void), moveRight(void);
 
 void RIT_IRQHandler (void)
 {					
-	int left = LPC_GPIO1->FIOPIN & (1<<27), right = LPC_GPIO1->FIOPIN & (1<<28);
+	int down = LPC_GPIO1->FIOPIN & (1<<26);
+	int left = LPC_GPIO1->FIOPIN & (1<<27);
+	int right = LPC_GPIO1->FIOPIN & (1<<28);
+	int up = LPC_GPIO1->FIOPIN & (1<<29);
 	static int key1 = 0, key2 = 0;
 	static int pressed = 0;
+	static int fast = 0;
 
+	disable_RIT();
+	disable_timer(0);
+	
 	if(!(LPC_PINCON->PINSEL4 & (1<<22))){
 		key1++;
 		if(!(LPC_GPIO2->FIOPIN & (1<<11))){
@@ -54,18 +61,35 @@ void RIT_IRQHandler (void)
 		}
 		else {
 			key2 = 0;
-			NVIC_EnableIRQ(EINT2_IRQn);							 /* disable Button interrupts			*/
+			NVIC_EnableIRQ(EINT2_IRQn);							 /* disable Button interr\ts			*/
 			LPC_PINCON->PINSEL4 |= (1 << 24);
+		}
+	}
+
+	if(!down){
+		if(!fast){
+			fast = 1;
+			disable_timer(0);
+			init_timer(0,12500000);
+			enable_timer(0);
+		}
+	}
+	if(!up){
+		if(fast){
+			fast = 0;
+			disable_timer(0);
+			init_timer(0,25000000);
+			enable_timer(0);
 		}
 	}
 	
 	if(!pressed){
 		pressed = 1;
 		if(!left){
-			
+			moveLeft();
 		}
 		if(!right){
-			
+			moveRight();
 		}
 	}
 	if(left && right) {
@@ -73,7 +97,8 @@ void RIT_IRQHandler (void)
 	}
 
   LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
-	
+	enable_RIT();
+	enable_timer(0);
   return;
 }
 
@@ -199,6 +224,117 @@ void rotateRight(){
 				rl_or = 0;
 			}
 			rl_shape(prevPosX, prevPosY);
+			break;
+	}
+	goingDown = 1;
+}
+
+void moveLeft(void) {
+	goingDown = 0;
+	switch (actualShape){
+		case 0:
+			if(line(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 1:
+			if(cube(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 2:
+			if(t_shape(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 3:
+			if(z_shape(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 4:
+			if(s_shape(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 5:
+			if(ll_shape(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+		case 6:
+			if(rl_shape(posX-1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX-1;
+			}
+			break;
+	}
+	goingDown = 1;
+}
+void moveRight(void) {
+	goingDown = 0;
+	switch (actualShape){
+		case 0:
+			if(line(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 1:
+			if(cube(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 2:
+			if(t_shape(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 3:
+			if(z_shape(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 4:
+			if(s_shape(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 5:
+			if(ll_shape(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
+			break;
+		case 6:
+			if(rl_shape(posX+1, posY) == 1){
+				prevPosX = posX;
+				prevPosY = posY;
+				posX = posX+1;
+			}
 			break;
 	}
 	goingDown = 1;
