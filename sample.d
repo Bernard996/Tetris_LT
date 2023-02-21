@@ -15,3 +15,4 @@
 .\sample.o: joystick/joystick.h
 .\sample.o: shapes/shapes.h
 .\sample.o: timer/timer.h
+.\sample.o: button_EXINT/button.h

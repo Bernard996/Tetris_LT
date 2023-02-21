@@ -33,6 +33,7 @@
 #include "joystick/joystick.h"
 #include "shapes/shapes.h"
 #include "timer/timer.h"
+#include "button_EXINT/button.h"
 
 #define SIMULATOR 1
 
@@ -50,6 +51,7 @@ int main(void) {
   // TP_Init();
   // TouchPanel_Calibrate();
 
+  BUTTON_init();
   LCD_Clear(White);
   joystick_init();
   init_RIT(0x1312d0);

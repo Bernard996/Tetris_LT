@@ -17,6 +17,7 @@ extern void disable_RIT( void );
 extern void reset_RIT( void );
 /* IRQ_RIT.c */
 extern void RIT_IRQHandler (void);
+extern int key1, key2;
 
 #endif /* end __RIT_H */
 /*****************************************************************************

@@ -13,6 +13,7 @@ extern uint8_t s_or;
 extern uint8_t t_or;
 extern uint8_t ll_or;
 extern uint8_t rl_or;
+extern uint8_t line_or_old;
 extern uint8_t t_or_old;
 extern uint8_t s_or_old;
 extern uint8_t z_or_old;

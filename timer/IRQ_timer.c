@@ -43,6 +43,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
     case 1:
@@ -55,7 +56,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
-        // actualShape = actualShape + 1;
+        actualShape++;
       }
       break;
     case 2:
@@ -68,6 +69,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
     case 3:
@@ -81,6 +83,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
     case 4:
@@ -94,6 +97,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
     case 5:
@@ -107,6 +111,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
     case 6:
@@ -120,15 +125,16 @@ void TIMER0_IRQHandler(void) {
         prevPosY = initPosY;
         posX = initPosX;
         posY = initPosY;
+        actualShape++;
       }
       break;
   }
-  // for (i = 0; i < 11; i++) {
-  //   for (j = 0; j < 10; j++) {
-  //     s[j] = gameMatrix[i][j] + '0';
-  //   }
-  //   GUI_Text(0, 15 * i, (uint8_t*)s, Black, White);
-  // }
+  for (i = 0; i < 11; i++) {
+    for (j = 0; j < 10; j++) {
+      s[j] = gameMatrix[i][j] + '0';
+    }
+    GUI_Text(0, 15 * i, (uint8_t*)s, Black, White);
+  }
   LPC_TIM0->IR = 1; /* clear interrupt flag */
   return;
 }
