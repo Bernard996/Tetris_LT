@@ -33,8 +33,11 @@
 #include "joystick/joystick.h"
 #include "shapes/shapes.h"
 #include "timer/timer.h"
+#include "button_EXINT/button.h"
+#include <time.h>
+#include <stdlib.h>
 
-#define SIMULATOR 1
+#define SIMULATOR 0
 
 #ifdef SIMULATOR
 extern uint8_t
@@ -50,17 +53,19 @@ int main(void) {
   // TP_Init();
   // TouchPanel_Calibrate();
 
+  BUTTON_init();
   LCD_Clear(White);
   joystick_init();
   init_RIT(0x1312d0);
   enable_RIT();
 
+  actualShape = LPC_RIT->RICOUNTER %7;  
+
   // printf("Ciao");
 
-  actualShape = 0;
   posX = initPosX;
   posY = initPosY;
-  init_timer(0, 25000000*10);
+  init_timer(0, 25000000);
   enable_timer(0);
 
   LPC_SC->PCON |= 0x1; /* power-down	mode

@@ -22,20 +22,24 @@ Dialog DLL:      TARMP1.DLL V1.26.0.0
  
 <h2>Project:</h2>
 D:\Progetti ARM\Tetris_LT\sample.uvprojx
-Project File Date:  02/21/2023
+Project File Date:  02/26/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling gameControls.c...
-gameControls\gameControls.h(3): warning:  #1-D: last line of file ends without a newline
-  void checkMatrix(void);
-gameControls\gameControls.c(81): warning:  #1-D: last line of file ends without a newline
+gameControls\gameControls.h(4): warning:  #1-D: last line of file ends without a newline
+  void drawMatrix(void);
+gameControls\gameControls.c(57): warning:  #177-D: variable "x"  was declared but never referenced
+    int i, j, k, l, x, y, fullCells = 0, matrixChanged = 0;
+gameControls\gameControls.c(57): warning:  #177-D: variable "y"  was declared but never referenced
+    int i, j, k, l, x, y, fullCells = 0, matrixChanged = 0;
+gameControls\gameControls.c(93): warning:  #1-D: last line of file ends without a newline
   uint8_t initPosX = 4, initPosY = 0, posX, posY, prevPosX, prevPosY, actualShape;
-gameControls\gameControls.c: 2 warnings, 0 errors
+gameControls\gameControls.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=36716 RO-data=1976 RW-data=172 ZI-data=612  
-".\sample.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=36748 RO-data=1976 RW-data=172 ZI-data=612  
+".\sample.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,14 +48,6 @@ Package Vendor: ARM
                 ARM.CMSIS.5.9.0
                 CMSIS (Common Microcontroller Software Interface Standard)
    * Component: CORE Version: 5.6.0
-
-Package Vendor: Keil
-                http://www.keil.com/pack/Keil.ARM_Compiler.1.6.3.pack
-                Keil.ARM_Compiler.1.6.3
-                Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
-   * Component: STDERR Variant: ITM Version: 1.2.0
-   * Component: STDIN Variant: ITM Version: 1.2.0
-   * Component: STDOUT Variant: ITM Version: 1.2.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.LPC1700_DFP.2.7.1.pack
@@ -66,16 +62,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
-
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDERR:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDIN:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

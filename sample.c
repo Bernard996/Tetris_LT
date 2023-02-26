@@ -57,15 +57,13 @@ int main(void) {
   LCD_Clear(White);
   joystick_init();
   init_RIT(0x1312d0);
-  enable_RIT();
+  init_timer(0, 25000000);
 
   actualShape = LPC_RIT->RICOUNTER %7;  
-
-  // printf("Ciao");
-
   posX = initPosX;
   posY = initPosY;
-  init_timer(0, 25000000);
+
+  enable_RIT();
   enable_timer(0);
 
   LPC_SC->PCON |= 0x1; /* power-down	mode
