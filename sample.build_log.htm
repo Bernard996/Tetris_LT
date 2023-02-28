@@ -5,10 +5,9 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.36.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Bernard Borio Polito Flex license: MDK Professional 5.36 (Flex) (mdk_pro) Operation stops: 10 Mar 2024
- 
+License Information: Bernard Borio Polito Flex license: error obtaining information 
 Tool Versions:
-Toolchain:       MDK Professional 5.36 (Flex)  Version: 5.36.0.0
+Toolchain:       MDK-Lite  Version: 5.36.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 7 (build 960)
 Assembler:       Armasm.exe V5.06 update 7 (build 960)
@@ -28,18 +27,20 @@ Project File Date:  02/26/2023
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling gameControls.c...
-gameControls\gameControls.h(4): warning:  #1-D: last line of file ends without a newline
-  void drawMatrix(void);
-gameControls\gameControls.c(57): warning:  #177-D: variable "x"  was declared but never referenced
+gameControls\gameControls.h(7): warning:  #1-D: last line of file ends without a newline
+  void clearGlitch(void);
+gameControls\gameControls.c(85): warning:  #177-D: variable "x"  was declared but never referenced
     int i, j, k, l, x, y, fullCells = 0, matrixChanged = 0;
-gameControls\gameControls.c(57): warning:  #177-D: variable "y"  was declared but never referenced
+gameControls\gameControls.c(85): warning:  #177-D: variable "y"  was declared but never referenced
     int i, j, k, l, x, y, fullCells = 0, matrixChanged = 0;
-gameControls\gameControls.c(93): warning:  #1-D: last line of file ends without a newline
+gameControls\gameControls.c(122): warning:  #223-D: function "sprintf" declared implicitly
+    sprintf(s, "%d", points-1);
+gameControls\gameControls.c(129): warning:  #1-D: last line of file ends without a newline
   uint8_t initPosX = 4, initPosY = 0, posX, posY, prevPosX, prevPosY, actualShape;
-gameControls\gameControls.c: 4 warnings, 0 errors
+gameControls\gameControls.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=36748 RO-data=1976 RW-data=172 ZI-data=612  
-".\sample.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=36980 RO-data=1976 RW-data=176 ZI-data=608  
+".\sample.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,7 +63,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

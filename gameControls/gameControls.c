@@ -30,6 +30,8 @@ uint8_t gameMatrix [11][10] = {
   1,1,1,1,1,1,1,1,1,1
 };
 
+int points = 0;
+
 void drawMatrix() {
   int i, j, x, y;
   for(i=0; i<11; i++) {
@@ -66,6 +68,19 @@ void drawMatrix() {
   }
 }
 
+void clearGlitch(void){
+  int i, j, x, y;
+  for(i=0; i<11; i++) {
+    for(j=0; j<10; j++) {
+      x = j*24;
+      y = i*24+80;
+      if (gameMatrix[i][j] == 0) {
+        deleteBaseSquare(x, y);
+      }
+    }
+  }
+}
+
 void checkMatrix(){
   int i, j, k, l, x, y, fullCells = 0, matrixChanged = 0;
   for(i=0; i<10; i++) {
@@ -78,6 +93,8 @@ void checkMatrix(){
       }
     }
     if(fullCells == 10) {
+      points++;
+      drawPoints();
       matrixChanged = 1;
       for(k=0; k<10; k++){
         gameMatrix[i][k] = 0;
@@ -98,9 +115,15 @@ void checkMatrix(){
     drawMatrix();
     matrixChanged = 0;
   }
-
 }
 
-
+void drawPoints() {
+  char s[10];
+  sprintf(s, "%d", points-1);
+  GUI_Text(180, 30, (uint8_t*)s, White, White);
+  sprintf(s, "%d", points);
+  GUI_Text(180, 30, (uint8_t*)s, Black, White);
+  GUI_Text(180, 10, (uint8_t*)"Points:", Black, White);
+}
 
 uint8_t initPosX = 4, initPosY = 0, posX, posY, prevPosX, prevPosY, actualShape;

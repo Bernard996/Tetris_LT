@@ -58,13 +58,14 @@ int main(void) {
   joystick_init();
   init_RIT(0x1312d0);
   init_timer(0, 25000000);
+  enable_RIT();
+  enable_timer(0);
+  GUI_Text(10, 10, (uint8_t*)"Time:", Black, White);
+  drawPoints();
 
   actualShape = LPC_RIT->RICOUNTER %7;  
   posX = initPosX;
   posY = initPosY;
-
-  enable_RIT();
-  enable_timer(0);
 
   LPC_SC->PCON |= 0x1; /* power-down	mode
                         */

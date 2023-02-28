@@ -33,7 +33,7 @@ void TIMER0_IRQHandler(void) {
   static int minutes = 0, seconds = 0;
   char s[5];
   sprintf(s, "%02d:%02d", minutes, seconds);
-  GUI_Text(10, 10, (uint8_t*)s, Black, White);
+  GUI_Text(10, 30, (uint8_t*)s, Black, White);
   switch (actualShape) {
     case 0:
       if (line(posX, posY)) {
@@ -41,6 +41,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = posY;
         posY = posY + 1;
       } else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -54,6 +55,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = posY;
         posY = posY + 1;
       } else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -67,6 +69,7 @@ void TIMER0_IRQHandler(void) {
         prevPosY = posY;
         posY = posY + 1;
       } else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -81,6 +84,7 @@ void TIMER0_IRQHandler(void) {
         posY = posY + 1;
       } 
       else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -95,6 +99,7 @@ void TIMER0_IRQHandler(void) {
         posY = posY + 1;
       } 
       else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -109,6 +114,7 @@ void TIMER0_IRQHandler(void) {
         posY = posY + 1;
       } 
       else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
@@ -123,6 +129,7 @@ void TIMER0_IRQHandler(void) {
         posY = posY + 1;
       } 
       else {
+        clearGlitch();
         prevPosX = initPosX;
         prevPosY = initPosY;
         posX = initPosX;
